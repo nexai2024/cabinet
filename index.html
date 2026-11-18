@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Open any data file, read the collections inside and edit every record."
+    />
+    <title>Cabinet — file data workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="rail">
+        <div class="brand">
+          <span class="brand-word">Cabinet</span>
+          <span class="brand-line">File data, opened.</span>
+        </div>
+
+        <label class="drop" id="drop">
+          <input type="file" id="file-input" hidden />
+          <span class="drop-title">Add a data file</span>
+          <span class="drop-hint">Drop it here or choose one</span>
+          <span class="drop-formats">JSON · NDJSON · CSV · TSV · XML · JS · TXT · DAT</span>
+        </label>
+
+        <div class="rail-head">
+          <span>Files</span>
+          <span id="file-count">0</span>
+        </div>
+        <nav class="files" id="files" aria-label="Stored files"></nav>
+
+        <button class="ghost rail-button" id="trash-toggle" type="button">Trash</button>
+
+        <div class="rail-key">
+          <label for="access-key">Access key</label>
+          <input
+            id="access-key"
+            type="password"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="needed to change data"
+          />
+        </div>
+
+        <div class="rail-foot">
+          <span id="stats">No files yet</span>
+          <a href="/openapi.json">API reference</a>
+        </div>
+      </aside>
+
+      <main class="pane" id="pane" aria-live="polite"></main>
+    </div>
+
+    <div class="drawer" id="drawer" hidden>
+      <div
+        class="drawer-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="drawer-title"
+      >
+        <header class="drawer-head">
+          <h2 id="drawer-title">Record</h2>
+          <button class="ghost" id="drawer-close" type="button">Close</button>
+        </header>
+        <div class="drawer-body" id="drawer-body"></div>
+        <footer class="drawer-foot">
+          <button class="ghost" id="add-field" type="button">Add field</button>
+          <span class="spacer"></span>
+          <button class="ghost danger-text" id="delete-record" type="button" hidden>
+            Delete record
+          </button>
+          <button class="primary" id="save-record" type="button">Save record</button>
+        </footer>
+      </div>
+    </div>
+
+    <input type="file" id="import-input" hidden />
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="/src/explorer.ts"></script>
+  </body>
+</html>

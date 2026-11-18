@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "api-service",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-11-11",
+  "assets": {
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cabinet",
+      "database_id": "5b1f0f2c-9c1a-4f0e-9a34-0f6c3b9d1a10"
+    }
+  ],
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "cabinet-files" }]
+}
